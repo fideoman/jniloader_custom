@@ -86,7 +86,7 @@ public class JniNamer {
     }
   }
 
-  private static String os() {
+  public static String os() {
     String os = System.getProperty("os.name", "").toLowerCase();
     if (os.startsWith("linux"))
       return "linux";

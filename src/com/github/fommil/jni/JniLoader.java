@@ -127,13 +127,11 @@ public final class JniLoader {
 
 			log.fine("extracting " + url + " to " + file.getAbsoluteFile());
 
-			if (file.getAbsoluteFile().toString().toLowerCase().contains("netlib")
-					&& file.getAbsoluteFile().toString().toLowerCase().contains("win")) {
-				// We'll extract netlib Default associated files as well
-				// This is VERY dirty, but I don't care :)
-				String[] winFiles = { "libiomp5md.dll", "mkl_core.dll", "mkl_intel_thread.dll", "mkl_avx2.dll",
-						"mkl_rt.dll", "libblas3.dll", "liblapack3.dll", "libgcc_s_seh-1.dll", "libquadmath-0.dll",
-						"libgfortran-5.dll" };
+			if (file.getAbsoluteFile().toString().toLowerCase().contains("javaswigwrapper")
+					&& JniNamer.os().contains("win")) {
+				// We'll extract associated files as well
+				// This is VERY dirty.
+				String[] winFiles = { "ampl-2.0.1.0.dll" };
 				for (int i = 0; i < winFiles.length; i++) {
 					if (JniLoader.class.getClassLoader().getResource(winFiles[i]) != null) {
 						try {
